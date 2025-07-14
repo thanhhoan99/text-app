@@ -17,21 +17,19 @@ export default function ProductList() {
     navigate('/cart');
  }
   return (
-    <div className="grid grid-cols-3 gap-4 p-4">
-      {products.map(product => (
-        <div key={product.id} className="border p-4 rounded shadow">
-          <h3 className="font-semibold">{product.name}</h3>
-          <p>Price: ${product.price}</p>
-          <button
-            className="mt-2 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700"
-            onClick={() => {
-              handleOnClick(product);
-            }}
-          >
-            Add to Cart
-          </button>
-        </div>
-      ))}
+   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6 bg-white rounded-lg shadow-md">
+  {products.map(product => (
+    <div key={product.id} className="border border-gray-200 p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+      <h3 className="font-semibold text-lg mb-2 text-gray-800">{product.name}</h3>
+      <p className="text-gray-600 mb-4">Price: <span className="font-medium">${product.price}</span></p>
+      <button
+        className="mt-auto px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors w-full"
+        onClick={() => handleOnClick(product)}
+      >
+        Add to Cart
+      </button>
     </div>
+  ))}
+</div>
   );
 }

@@ -10,26 +10,42 @@ function App() {
 
 
   return (
-   <div className="min-h-screen  items-center justify-center bg-gray-100" style={{width:1530}}>
+  <div className="min-h-screen flex flex-col items-center justify-start bg-gray-100 px-6 py-8" style={{ width: 1530 }}>
   <CartProvider>
     <BrowserRouter>
-      <nav className="p-4 bg-gray-100 flex space-x-4">
-        <NavLink to="/" className="text-blue-600 hover:underline">Home</NavLink>
-        <NavLink to="/cart" className="text-blue-600 hover:underline">Cart</NavLink>
+      <nav className="p-4 flex space-x-8 justify-center bg-white shadow rounded w-full max-w-4xl mb-8">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `text-blue-600 hover:underline font-medium ${isActive ? 'underline decoration-2' : ''}`
+          }
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/cart"
+          className={({ isActive }) =>
+            `text-blue-600 hover:underline font-medium ${isActive ? 'underline decoration-2' : ''}`
+          }
+        >
+          Cart
+        </NavLink>
       </nav>
       <Routes>
         <Route path="/" element={<ProductList />} />
-        <Route path="/cart" element={
-          <div className="max-w-4xl mx-auto p-4 space-y-6">
-            <CartList />
-            <BuyerForm />
-          </div>
-        } />
+        <Route
+          path="/cart"
+          element={
+            <div className="max-w-4xl mx-auto p-6 space-y-8 bg-white rounded shadow"  >
+              <CartList />
+              <BuyerForm />
+            </div>
+          }
+        />
       </Routes>
     </BrowserRouter>
   </CartProvider>
 </div>
-   
   )
 }
 
