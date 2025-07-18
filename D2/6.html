@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Get Input Value</title></head>
+<body>
+  <input type="text" id="usernameInput" placeholder="Username">
+  <button id="submitUsername">Submit</button>
+
+  <script>
+    document.getElementById("submitUsername").onclick = () => {
+      alert("Username: " + document.getElementById("usernameInput").value);
+    };
+  </script>
+</body>
+</html>

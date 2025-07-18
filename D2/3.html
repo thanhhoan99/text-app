@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><title>Add List Item</title></head>
+<body>
+  <input type="text" id="itemInput" placeholder="New item">
+  <button id="addItemBtn">Add</button>
+  <ul id="itemList"></ul>
+
+  <script>
+    document.getElementById("addItemBtn").onclick = () => {
+      const val = document.getElementById("itemInput").value;
+      if (val.trim()) {
+        const li = document.createElement("li");
+        li.textContent = val;
+        document.getElementById("itemList").appendChild(li);
+        document.getElementById("itemInput").value = "";
+      }
+    };
+  </script>
+</body>
+</html>

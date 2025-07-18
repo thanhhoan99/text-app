@@ -1,0 +1,62 @@
+.form {
+  max-width: 400px;
+  margin: 32px auto;
+  padding: 24px 28px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  font-family: Arial, sans-serif;
+}
+
+.form h2 {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="tel"],
+.form input[type="date"],
+.form select,
+.form textarea {
+  width: 100%;
+  padding: 7px 10px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.radioGroup,
+.checkboxGroup {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+
+.form button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.form button[type="submit"]:hover {
+  background: #1256a3;
+}

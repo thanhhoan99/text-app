@@ -1,0 +1,16 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>Greeting</title></head>
+<body>
+  <p id="greetingText"></p>
+
+  <script>
+    window.onload = () => {
+      const hour = new Date().getHours();
+      const greeting = hour < 12 ? "Good Morning" : hour < 18 ? "Good Afternoon" : "Good Evening";
+      document.getElementById("greetingText").textContent = greeting;
+    };
+  </script>
+</body>
+</html>

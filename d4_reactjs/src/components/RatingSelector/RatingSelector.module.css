@@ -1,0 +1,53 @@
+.rating-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.star {
+  font-size: 24px;
+  color: #999;
+  transition: color 0.2s;
+}
+
+.star.filled {
+  color: orange;
+}
+
+.rating-label {
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Màu nền tương ứng với mức đánh giá */
+.very-bad {
+  background-color: #d32f2f; /* đỏ đậm */
+}
+
+.bad {
+  background-color: #f57c00; /* cam */
+}
+
+.normal {
+  background-color: #388e3c; /* xanh lá */
+}
+
+.good {
+  background-color: #1976d2; /* xanh dương */
+}
+
+.excellent {
+  background-color: #8e24aa; /* tím */
+}

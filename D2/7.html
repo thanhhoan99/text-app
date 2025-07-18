@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>Color Buttons</title></head>
+<body>
+  <button class="colorBtn">Red</button>
+  <button class="colorBtn">Green</button>
+  <button class="colorBtn">Blue</button>
+
+  <script>
+    document.querySelectorAll(".colorBtn").forEach(btn => {
+      btn.onclick = () => alert(btn.textContent);
+    });
+  </script>
+</body>
+</html>

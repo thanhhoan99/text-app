@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Change Image</title></head>
+<body>
+  <button id="changeImageBtn">Change Image</button><br>
+  <img id="mainImage" src="cat.png" width="200">
+
+  <script>
+    document.getElementById("changeImageBtn").onclick = () => {
+      document.getElementById("mainImage").src = "dog.png";
+    };
+  </script>
+</body>
+</html>

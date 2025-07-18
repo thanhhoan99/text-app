@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Toggle Highlight</title>
+  <style>
+    .box { width: 100px; height: 100px; background: #eee; margin-top: 10px; }
+    .highlight { background: yellow; }
+  </style>
+</head>
+<body>
+  <button id="toggleHighlightBtn">Toggle Highlight</button>
+  <div class="box"></div>
+
+  <script>
+    document.getElementById("toggleHighlightBtn").onclick = () => {
+      document.querySelector(".box").classList.toggle("highlight");
+    };
+  </script>
+</body>
+</html>

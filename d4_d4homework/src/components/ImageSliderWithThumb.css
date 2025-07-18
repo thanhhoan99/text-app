@@ -1,0 +1,41 @@
+.slider-wrapper {
+  text-align: center;
+}
+
+.main-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.main-image img {
+  width: 300px;
+  height: auto;
+}
+
+.main-image button {
+  font-size: 18px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.thumbs {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.thumb {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  padding: 2px;
+}
+
+.thumb.active {
+  border-color: orange;
+}

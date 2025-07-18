@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.colorful-menu ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.colorful-menu ul li {
+  flex: 1;
+  text-align: center;
+}
+
+.colorful-menu ul li a {
+  display: block;
+  padding: 20px 0;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: background 0.3s;
+}
+
+/* Màu từng tab */
+.home     { background-color: #33ccdd; }
+.about    { background-color: #ff5e5e; }
+.feature  { background-color: #4cd964; }
+.service  { background-color: #ffcc00; }
+.gallery  { background-color: #ff884d; }
+.blog     { background-color: #ff66ff; }
+
+/* Hover */
+.colorful-menu ul li a:hover {
+  opacity: 0.85;
+}

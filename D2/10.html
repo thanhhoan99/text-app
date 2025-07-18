@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>Validate Email</title></head>
+<body>
+  <input type="text" id="emailInput" placeholder="Enter email">
+  <button id="validateBtn">Validate</button>
+  <p id="errorMessage" style="color:red"></p>
+
+  <script>
+    document.getElementById("validateBtn").onclick = () => {
+      const email = document.getElementById("emailInput").value;
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const error = document.getElementById("errorMessage");
+      error.textContent = regex.test(email) ? "" : "Invalid email format.";
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+    }
+    .invalid {
+      border: 2px solid red;
+    }
+    .success {
+      border: 2px solid green;
+    }
+    .radio-group, .checkbox-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+    }
+    h2{
+        margin-left: 760px;
+    }
+  </style>
+</head>
+<body>
+
+<h2 >User Registration Form</h2>
+
+<form id="registrationForm" novalidate>
+  <!-- Full Name -->
+  <label>Full Name
+    <input type="text" id="fullName" required>
+    <div class="error" id="fullNameError"></div>
+  </label>
+
+  <!-- Email -->
+  <label>Email
+    <input type="email" id="email" required>
+    <div class="error" id="emailError"></div>
+  </label>
+
+  <!-- Password -->
+  <label>Password
+    <input type="password" id="password" required>
+    <div class="error" id="passwordError"></div>
+  </label>
+
+  <!-- Confirm Password -->
+  <label>Confirm Password
+    <input type="password" id="confirmPassword" required>
+    <div class="error" id="confirmPasswordError"></div>
+  </label>
+
+  <!-- Phone -->
+  <label>Phone Number
+    <input type="tel" id="phone" required>
+    <div class="error" id="phoneError"></div>
+  </label>
+
+  <!-- Gender -->
+  <label>Gender</label>
+  <div class="radio-group">
+    <label><input type="radio" name="gender" value="Male"> Male</label>
+    <label><input type="radio" name="gender" value="Female"> Female</label>
+    <label><input type="radio" name="gender" value="Other"> Other</label>
+  </div>
+  <div class="error" id="genderError"></div>
+
+  <!-- Date of Birth -->
+  <label>Date of Birth
+    <input type="date" id="dob" required>
+    <div class="error" id="dobError"></div>
+  </label>
+
+  <!-- Country -->
+  <label>Country
+    <select id="country" required>
+      <option value="">--Select--</option>
+      <option value="Vietnam">Vietnam</option>
+      <option value="USA">USA</option>
+      <option value="UK">UK</option>
+      <option value="Other">Other</option>
+    </select>
+    <div class="error" id="countryError"></div>
+  </label>
+
+  <!-- Hobbies -->
+  <label>Hobbies</label>
+  <div class="checkbox-group">
+    <label><input type="checkbox" class="hobby" value="Music"> Music</label>
+    <label><input type="checkbox" class="hobby" value="Sports"> Sports</label>
+    <label><input type="checkbox" class="hobby" value="Reading"> Reading</label>
+  </div>
+  <div class="error" id="hobbiesError"></div>
+
+  <!-- Profile Picture -->
+  <label>Profile Picture
+    <input type="file" id="profilePic" accept=".jpg,.jpeg,.png">
+  </label>
+
+  <!-- Bio -->
+  <label>Bio / About You
+    <textarea id="bio" maxlength="300" rows="4"></textarea>
+    <div class="error" id="bioError"></div>
+  </label>
+
+  <button type="submit">Register</button>
+</form>
+
+<script>
+  document.getElementById("registrationForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    let isValid = true;
+
+    function showError(id, message) {
+      const field = document.getElementById(id.replace("Error", ""));
+      document.getElementById(id).textContent = message;
+      field.classList.add("invalid");
+      isValid = false;
+    }
+
+    function clearError(id) {
+      const field = document.getElementById(id.replace("Error", ""));
+      document.getElementById(id).textContent = "";
+      field.classList.remove("invalid");
+      field.classList.add("success");
+    }
+
+    // Full Name
+    const fullName = document.getElementById("fullName").value.trim();
+    if (fullName.length < 3) showError("fullNameError", "Full name must be at least 3 characters");
+    else clearError("fullNameError");
+
+    // Email
+    const email = document.getElementById("email").value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) showError("emailError", "Enter a valid email");
+    else clearError("emailError");
+
+    // Password
+    const password = document.getElementById("password").value;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+    if (!passwordRegex.test(password)) showError("passwordError", "Password must be at least 8 characters, letters & numbers");
+    else clearError("passwordError");
+
+    // Confirm Password
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    if (confirmPassword !== password) showError("confirmPasswordError", "Passwords do not match");
+    else clearError("confirmPasswordError");
+
+    // Phone
+    const phone = document.getElementById("phone").value.trim();
+    if (!/^\d{10,}$/.test(phone)) showError("phoneError", "Enter a valid phone number with at least 10 digits");
+    else clearError("phoneError");
+
+    // Gender
+    const genderSelected = document.querySelector('input[name="gender"]:checked');
+    if (!genderSelected) {
+      document.getElementById("genderError").textContent = "Please select gender";
+      isValid = false;
+    } else {
+      document.getElementById("genderError").textContent = "";
+    }
+
+    // DOB
+    const dob = new Date(document.getElementById("dob").value);
+    const today = new Date();
+    const age = today.getFullYear() - dob.getFullYear();
+    const isOver18 = age > 18 || (age === 18 && today >= new Date(dob.setFullYear(dob.getFullYear() + 18)));
+    if (isNaN(dob.getTime()) || !isOver18) showError("dobError", "You must be at least 18 years old");
+    else clearError("dobError");
+
+    // Country
+    const country = document.getElementById("country").value;
+    if (!country) showError("countryError", "Please select a country");
+    else clearError("countryError");
+
+    // Hobbies
+    const hobbies = document.querySelectorAll(".hobby:checked");
+    if (hobbies.length === 0) {
+      document.getElementById("hobbiesError").textContent = "Select at least one hobby";
+      isValid = false;
+    } else {
+      document.getElementById("hobbiesError").textContent = "";
+    }
+
+    // Bio (optional)
+    const bio = document.getElementById("bio").value;
+    if (bio.length > 300) {
+      document.getElementById("bioError").textContent = "Bio must be under 300 characters";
+      isValid = false;
+    } else {
+      document.getElementById("bioError").textContent = "";
+    }
+
+    if (isValid) {
+      alert("Registration successful!");
+      // You can also submit form here with AJAX or reset form
+    }
+  });
+</script>
+
+</body>
+</html>

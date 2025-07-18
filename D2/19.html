@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head><title>Count Checkboxes</title></head>
+<body>
+  <label><input type="checkbox" class="optionBox"> Option 1</label><br>
+  <label><input type="checkbox" class="optionBox"> Option 2</label><br>
+  <label><input type="checkbox" class="optionBox"> Option 3</label><br>
+  <p>Checked: <span id="checkedCount">0</span></p>
+
+  <script>
+    const checkboxes = document.querySelectorAll(".optionBox");
+    const countDisplay = document.getElementById("checkedCount");
+
+    function updateCount() {
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      countDisplay.textContent = checked;
+    }
+
+    checkboxes.forEach(cb => cb.addEventListener("change", updateCount));
+  </script>
+</body>
+</html>

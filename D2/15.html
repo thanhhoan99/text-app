@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>Character Counter</title></head>
+<body>
+  <textarea id="bioInput" maxlength="200" rows="4" cols="30"></textarea>
+  <p id="charCount">200 characters remaining</p>
+
+  <script>
+    document.getElementById("bioInput").addEventListener("input", function () {
+      const remaining = 200 - this.value.length;
+      document.getElementById("charCount").textContent = `${remaining} characters remaining`;
+    });
+  </script>
+</body>
+</html>

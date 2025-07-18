@@ -1,0 +1,65 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f1f4f9;
+  padding: 40px;
+}
+
+.skill-container {
+  width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.skill .icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 18px;
+}
+
+.skill span {
+  width: 70px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.bar {
+  flex: 1;
+  height: 12px;
+  background-color: #eee;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  border-radius: 6px;
+}
+
+/* Progress colors + width */
+.progress.html     { width: 80%; background-color: #4CAF50; }
+.progress.css      { width: 65%; background-color: #F44336; }
+.progress.php      { width: 50%; background-color: #00BCD4; }
+.progress.java     { width: 75%; background-color: #FFC107; }
+.progress.dotnet   { width: 55%; background-color: #BA68C8; }
+
+/* Icon backgrounds */
+.icon.html     { background: #4CAF50; }
+.icon.css      { background: #F44336; }
+.icon.php      { background: #00BCD4; }
+.icon.java     { background: #FFC107; color: #000; }
+.icon.dotnet   { background: #BA68C8; }

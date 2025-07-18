@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  background-color: #eaf2f9;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.app-container {
+  padding: 24px;
+  max-width: 360px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

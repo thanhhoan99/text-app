@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Field Error</title></head>
+<body>
+  <input type="text" id="nameInput" placeholder="Enter name">
+  <button id="formSubmit">Submit</button>
+  <p id="nameError" style="color:red;"></p>
+
+  <script>
+    document.getElementById("formSubmit").onclick = () => {
+      const input = document.getElementById("nameInput");
+      const error = document.getElementById("nameError");
+      if (input.value.trim() === "") {
+        input.style.border = "2px solid red";
+        error.textContent = "Name is required.";
+      } else {
+        input.style.border = "";
+        error.textContent = "";
+      }
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Strike Todo Items</title>
+  <style>
+    #todoList li { cursor: pointer; }
+    #todoList li.done { text-decoration: line-through; color: gray; }
+  </style>
+</head>
+<body>
+  <ul id="todoList">
+    <li>Buy milk</li>
+    <li>Walk the dog</li>
+    <li>Read a book</li>
+  </ul>
+
+  <script>
+    document.querySelectorAll("#todoList li").forEach(item => {
+      item.onclick = () => {
+        item.classList.toggle("done");
+      };
+    });
+  </script>
+</body>
+</html>

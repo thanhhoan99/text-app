@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  padding: 40px;
+  background: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.social-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 200px;
+  height: 220px;
+  color: #fff;
+  padding: 30px 20px;
+  border-radius: 5px;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+  text-align: left;
+  position: relative;
+}
+
+.card i {
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.card h3 {
+  margin: 0 0 5px;
+  font-size: 20px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Social-specific colors */
+.facebook  { background-color: #3b5998; }
+.twitter   { background-color: #1da1f2; }
+.google    { background-color: #ea4335; }
+.pinterest { background-color: #bd081c; }

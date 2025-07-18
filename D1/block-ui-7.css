@@ -1,0 +1,51 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  padding: 50px;
+  text-align: center;
+}
+
+.workflow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.step {
+  background: #ccc;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.step i {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.step p {
+  font-size: 16px;
+  margin: 0;
+  color: #eee;
+}
+
+.arrow {
+  font-size: 30px;
+  color: #999;
+  margin-top: -10px;
+}
+
+/* Colors for each step */
+.red    { background-color: #f44336; }
+.blue   { background-color: #00bcd4; }
+.green  { background-color: #4caf50; }
+.purple { background-color: #ab47bc; }

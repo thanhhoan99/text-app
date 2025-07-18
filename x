@@ -1,3 +1,5 @@
+npm create vite@latest my-app -- --template react-ts
+
 npx create-next-app@latest
 npm i next@latest react@latest react-dom@latest
 

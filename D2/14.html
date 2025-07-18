@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Disable Once</title></head>
+<body>
+  <button id="onceBtn">Click Me</button>
+
+  <script>
+    document.getElementById("onceBtn").onclick = function () {
+      this.disabled = true;
+      this.textContent = "Clicked!";
+    };
+  </script>
+</body>
+</html>

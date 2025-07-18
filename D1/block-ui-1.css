@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  padding: 40px;
+}
+
+.progress-container {
+  width: 600px;
+  margin: auto;
+}
+
+.progress-bar {
+  position: relative;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  height: 35px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  box-sizing: border-box;
+}
+
+.label {
+  /* position: relative; */
+  z-index: 2;
+  font-weight: bold;
+  color: #000;
+}
+
+.progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 5px;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 10px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Color Themes with widths */
+.red    { background-color: #f44336; width: 20%; }
+.cyan   { background-color: #00bcd4; width: 50%; }
+.green  { background-color: #4caf50; width: 70%; }
+.yellow { background-color: #ffca28; width: 30%; color: #000; }
+.purple { background-color: #ba68c8; width: 45%; }
+.pink   { background-color: #f06292; width: 80%; }
+.blue   { background-color: #42a5f5; width: 37%; }

@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  padding: 20px;
+  background: #f4f8fb;
+  font-family: 'Arial', sans-serif;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  border-radius: 6px;
+  padding: 20px;
+  flex: 1;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.card h4 {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.card h2 {
+  color: #00bfff;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.chart {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 60px;
+}
+
+.bar {
+  width: 10px;
+  border-radius: 2px;
+  background: #ccc;
+  height: 50%;
+  position: relative;
+}
+
+.bar::after {
+  content: attr(title);
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: #777;
+}
+
+.red { background: #ff4d4d; height: 20px; }
+.green { background: #5cd65c; height: 35px; }
+.yellow { background: #ffd11a; height: 45px; }
+.blue { background: #4da6ff; height: 50px; }
+.orange { background: #ff944d; height: 40px; }

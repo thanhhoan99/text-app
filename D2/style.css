@@ -1,0 +1,74 @@
+/* Style cho toàn bộ trang */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f2f5;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Style cho thẻ chứa calculator */
+#calculator {
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 350px;
+    width: 100%;
+}
+
+/* Style cho màn hình hiển thị kết quả */
+#display {
+    width: 100%;
+    height: 50px;
+    font-size: 1.5rem;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #222;
+    color: #fff;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+/* Style cho khối chứa các nút */
+#keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+/* Style cho các nút */
+button {
+    padding: 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #4CAF50; /* Màu xanh nhẹ */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #45a049; /* Màu xanh đậm hơn khi hover */
+    transform: scale(1.05);
+}
+
+/* Đặc biệt cho nút "=" có màu khác để nổi bật */
+button:nth-child(15),
+button:nth-child(16),
+button:nth-child(17),
+button:nth-child(18) {
+    background-color: #2196F3; /* Màu xanh dương */
+}
+
+button:nth-child(15):hover,
+button:nth-child(16):hover,
+button:nth-child(17):hover,
+button:nth-child(18):hover {
+    background-color: #1976D2; /* Thay đổi màu khi hover */
+}

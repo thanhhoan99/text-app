@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hover Box</title>
+  <style>
+    .hoverBox {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <div class="hoverBox"></div>
+
+  <script>
+    const box = document.querySelector(".hoverBox");
+    box.onmouseenter = () => box.style.backgroundColor = "lightblue";
+    box.onmouseleave = () => box.style.backgroundColor = "";
+  </script>
+</body>
+</html>

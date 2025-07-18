@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>Remove Item</title></head>
+<body>
+  <ul id="deleteList">
+    <li>Item 1 <button class="deleteBtn">Delete</button></li>
+    <li>Item 2 <button class="deleteBtn">Delete</button></li>
+  </ul>
+
+  <script>
+    document.querySelectorAll(".deleteBtn").forEach(btn => {
+      btn.onclick = () => btn.parentElement.remove();
+    });
+  </script>
+</body>
+</html>

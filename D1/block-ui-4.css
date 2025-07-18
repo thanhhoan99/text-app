@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  padding: 20px;
+  background: #f2f4f9;
+  font-family: Arial, sans-serif;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.profile-card {
+  background: #fff;
+  width: 250px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.profile-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.profile-card h2 {
+  font-size: 18px;
+  margin: 10px 0 5px;
+  text-transform: uppercase;
+}
+
+.profile-card .role {
+  color: gray;
+  margin-bottom: 10px;
+}
+
+.profile-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  font-size: 14px;
+  color: #444;
+}
+
+.profile-card ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 20px;
+  border-bottom: 1px dashed #ddd;
+  align-items: center;
+}
+
+.profile-card .info {
+  padding: 10px 20px;
+  color: #fff;
+  text-align: left;
+  font-size: 14px;
+}
+
+.profile-card .info p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.profile-card .info span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: normal;
+  margin-top: 5px;
+}
+
+.red    { background-color: #f44336; }
+.green  { background-color: #4caf50; }
+.blue   { background-color: #2196f3; }
+.cyan   { background-color: #00bcd4; }
+.orange { background-color: #ff5722; }
+.yellow { background-color: #ffc107; color: #333; }
+.purple { background-color: #9c27b0; }
+.pink   { background-color: #e91e63; }
