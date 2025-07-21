@@ -5,7 +5,6 @@ import * as yup from 'yup';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { useNavigate } from 'react-router';
 import { useAuthStore } from '../useAuthStore';
 
 // Strong typed interface for form data
@@ -22,15 +21,10 @@ const validationSchema: yup.ObjectSchema<IFormInput> = yup.object({
     .email('Please enter a valid email address')
     .min(5, 'Email must be at least 5 characters')
     .max(100, 'Email must be less than 100 characters'),
-  password: yup
-    .string()
-    .required('Password is required')
-    .min(6, 'Password must be at least 6 characters')
-    .max(50, 'Password must be less than 50 characters'),
+  password: yup.string().required('Password is required').min(6, 'Password must be at least 6 characters').max(50, 'Password must be less than 50 characters'),
 });
 
 export default function Login() {
-  const navigate = useNavigate();
   const { login, error } = useAuthStore((state) => state);
 
   const {
@@ -50,7 +44,9 @@ export default function Login() {
     login({
       username: data.username,
       password: data.password,
-      navigate: navigate,
+    }).then(() => {
+      // Redirect to home page after successful login
+      window.location.href = '/home';
     });
   };
 

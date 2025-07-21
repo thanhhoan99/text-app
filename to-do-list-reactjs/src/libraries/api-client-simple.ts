@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import Axios, { type InternalAxiosRequestConfig } from 'axios';
 
 const URL = 'https://server.aptech.io';

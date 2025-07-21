@@ -1,6 +1,7 @@
 
 import './App.css'
-import TasksManagementWithZustand from '.'
+
+import TasksManagementWithZustandAndSecurity from '.'
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     <>
  
 
-     <TasksManagementWithZustand/>
+     <TasksManagementWithZustandAndSecurity/>
     </>
   )
 }
