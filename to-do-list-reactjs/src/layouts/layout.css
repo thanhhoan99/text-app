@@ -1,0 +1,22 @@
+/* Áp dụng cho sidebar có class là .custom-sider */
+.custom-sider::-webkit-scrollbar {
+  width: 6px;                  /* Chiều rộng thanh cuộn dọc */
+}
+
+.custom-sider::-webkit-scrollbar-thumb {
+   background-color: rgba(0, 0, 0, 0.3); /* Màu phần kéo */
+  border-radius: 4px;                  /* Bo tròn */
+   transition: background-color 0.8s ease; /* 👈 hiệu ứng mượt khi hover */
+}
+
+.custom-sider::-webkit-scrollbar-thumb:hover {
+background-color: rgba(255, 254, 254, 0.63);  /* Màu khi hover */
+}
+
+.custom-sider::-webkit-scrollbar-track {
+  background-color: transparent;       /* Nền thanh cuộn */
+}
+
+
+
+

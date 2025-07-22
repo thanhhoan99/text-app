@@ -1,18 +1,60 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect } from 'react';
-import { apiClient } from '../libraries/api-client';
+import { useEffect, useState } from 'react';
+import { Table, Button, Space } from 'antd';
+import type { ColumnsType, TablePaginationConfig, TableProps } from 'antd/es/table';
+import type { SorterResult } from 'antd/es/table/interface';
 import { useAuthStore } from '../useAuthStore';
-import { Link, useNavigate } from 'react-router';
+import { useNavigate, Link } from 'react-router-dom';
+import { apiClient } from '../libraries/api-client';
 
+interface Task {
+  id: string;
+  title: string;
+  description: string;
+  assignee_id: string;
+}
+
+interface TableParams {
+  pagination?: TablePaginationConfig;
+  sortField?: string;
+  sortOrder?: 'ascend' | 'descend' | undefined;
+  filters?: Record<string, any>;
+}
 
 export default function Tasks() {
-  const { logOut, loggedInUser } = useAuthStore((state) => state);
-  const [tasks, setTasks] = React.useState<[]>([]);
+  const { loggedInUser, logOut } = useAuthStore((state) => state);
   const navigate = useNavigate();
 
+  const [data, setData] = useState<Task[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [tableParams, setTableParams] = useState<TableParams>({
+    pagination: {
+      current: 1,
+      pageSize: 10,
+    },
+  });
+
   const hasRole = (roleName: string) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return loggedInUser?.roles?.some((r: any) => r.name === roleName);
+  };
+
+  const fetchTasks = async () => {
+    setLoading(true);
+    try {
+      const tasks = (await apiClient.get('/workspaces/tasks')) as Task[];
+      setData(tasks);
+      setTableParams((prev) => ({
+        ...prev,
+        pagination: {
+          ...prev.pagination,
+          total: tasks.length, // hoặc từ backend nếu có pagination
+        },
+      }));
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -21,21 +63,55 @@ export default function Tasks() {
     }
   }, [loggedInUser, navigate]);
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const tasks = (await apiClient.get('/workspaces/tasks')) as [];
-        setTasks(tasks);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData();
+  useEffect(() => {
+    fetchTasks();
   }, []);
 
+  const handleTableChange: TableProps<Task>['onChange'] = (pagination, filters, sorter) => {
+      const order = (sorter as SorterResult<Task>).order;
+    setTableParams({
+      pagination,
+      filters,
+      sortField: (sorter as SorterResult<Task>).field as string,
+       sortOrder: order === 'ascend' || order === 'descend' ? order : undefined,
+    });
+  };
+
+  const columns: ColumnsType<Task> = [
+    {
+      title: 'ID',
+      dataIndex: 'id',
+      sorter: true,
+    },
+    {
+      title: 'Title',
+      dataIndex: 'title',
+      sorter: true,
+    },
+    {
+      title: 'Description',
+      dataIndex: 'description',
+    },
+    {
+      title: 'Assignee',
+      dataIndex: 'assignee_id',
+    },
+    {
+      title: 'Actions',
+      dataIndex: 'actions',
+      render: (_, record) => (
+        <Space>
+          <Button type="link" onClick={() => alert(`Edit ${record.id}`)}>
+            Edit
+          </Button>
+          <Link to={`/task-isr/${record.id}`}>View</Link>
+        </Space>
+      ),
+    },
+  ];
+
   return (
-    <div className="p-6 space-y-8">
-      {/* Header */}
+    <div className="p-6 space-y-6">
       <div className="bg-white p-6 rounded-lg shadow flex justify-between items-center border">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">📋 Tasks Dashboard</h2>
@@ -43,68 +119,30 @@ export default function Tasks() {
         </div>
         <div className="space-x-3">
           {hasRole('Administrators') && (
-            <button
-              onClick={() => navigate('/add-tasks')}
-              className="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-lg transition"
-            >
+            <Button type="primary" onClick={() => navigate('/add-tasks')}>
               + Add Task
-            </button>
+            </Button>
           )}
-          <button
+          <Button
             onClick={() => {
               logOut();
               navigate('/login');
             }}
-            className="bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg transition"
           >
             Logout
-          </button>
+          </Button>
         </div>
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-lg shadow border p-4">
-        <div className="overflow-x-auto rounded-lg">
-          <table className="min-w-full text-sm text-left text-gray-800">
-            <thead className="bg-gray-50 border-b text-xs text-gray-500 uppercase">
-              <tr>
-                <th className="px-4 py-3">ID</th>
-                <th className="px-4 py-3">Title</th>
-                <th className="px-4 py-3">Description</th>
-                <th className="px-4 py-3">Assignee</th>
-                <th className="px-4 py-3">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-             
-              {tasks.map((task: any) => (
-                <tr key={task.id} className="border-b hover:bg-gray-50">
-                  <td className="px-4 py-3">{task.id}</td>
-                  <td className="px-4 py-3 font-medium">{task.title}</td>
-                  <td className="px-4 py-3 text-gray-600">{task.description}</td>
-                  <td className="px-4 py-3 text-gray-600">{task.assignee_id}</td>
-                  <td className="px-4 py-3 space-x-2">
-                    <button className="text-indigo-600 hover:text-indigo-900 font-medium">Edit</button>
-                    <Link
-                      to={`/task-isr/${task.id}`}
-                      className="text-blue-600 hover:text-blue-900 font-medium"
-                    >
-                      View
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-              {tasks.length === 0 && (
-                <tr>
-                  <td colSpan={5} className="text-center py-6 text-gray-400">
-                    No tasks available.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Table<Task>
+        rowKey="id"
+        columns={columns}
+        dataSource={data}
+        pagination={tableParams.pagination}
+        loading={loading}
+        onChange={handleTableChange}
+        bordered
+      />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 
 import AddTask from '../pages/AddTask';
+import Home from '../pages/Home';
 import Login from '../pages/Login';
 import MyTasks from '../pages/MyTasks';
 
@@ -24,8 +25,8 @@ const routes = [
     icon: <UserOutlined />,
     name: 'Home',
     index: true,
-    element: <Tasks />,
-    roles: ['Users', 'Managers', 'Leaders'],
+    element: <Home />,
+    roles: ['Users', 'customer', 'Leaders'],
   },
   {
     path: '/tasks',
@@ -61,7 +62,7 @@ const routes = [
         element: <UpdateTask />,
         icon: <EditOutlined />,
         roles: ['Managers', 'Leaders'],
-      },
+      }
     ],
   },
     {
