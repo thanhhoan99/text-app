@@ -1,65 +1,54 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router';
-
-import { useAuthStore } from './useAuthStore';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import routes from './routes';
+import { useAuthStore } from './useAuthStore';
 import MainLayout from './layouts/MainLayout';
-
 
 export default function TasksManagementWithZustandAndSecurity() {
   const { loggedInUser } = useAuthStore((state) => state);
-  // Get array of user roles ["code"]
-  const userRoles: string[] = loggedInUser?.roles?.map((role: any) => role.code?.toLowerCase()) || [];
-  console.log('userRoles', userRoles);
-  const generatedRoutes: any[] = routes
-    .map((route) => {
-      const routeRoles: string[] = route.roles?.map((role: string) => role?.toLowerCase()) || [];
-      const hasAccess = userRoles.some((role: string) => {
-        return role?.toLowerCase() === 'administrators' || routeRoles.includes(role?.toLowerCase());
-      });
-      return hasAccess
-        ? {
-            path: route.path,
-            element: route.element,
-            index: route.index,
-          }
-        : null;
-    })
-    .filter(Boolean); // Filter out null values
+  const userRoles: string[] =
+    loggedInUser?.roles?.map((role: any) => role.code.toLowerCase()) || [];
 
-  routes.forEach((route) => {
-    if (route.isPublic) {
-      generatedRoutes.push({
-        path: route.path,
-        element: route.element,
-        index: route.index,
-      });
-    }
-  });
+  const getProtectedRoutes = (routes: any[]) => {
+    return routes.flatMap((route) => {
+      const routeRoles = route.roles?.map((r: string) => r.toLowerCase()) || [];
+      const hasAccess = userRoles.some(
+        (r) => r === 'administrators' || routeRoles.includes(r)
+      );
+
+      if (!hasAccess || route.isPublic === true) return [];
+
+      const children = route.children?.map((child: any) => ({
+        path: child.path,
+        element: child.element,
+      })) || [];
+
+      return [{ path: route.path, element: route.element }, ...children];
+    });
+  };
+
+  const protectedRoutes = getProtectedRoutes(routes);
 
   const router = createBrowserRouter([
     {
+      path: '/login',
+      element: routes.find((r) => r.path === '/login')?.element,
+    },
+    {
       path: '/',
       element: <MainLayout />,
-      children: generatedRoutes,
+      children: protectedRoutes,
     },
-
-    //  NO MATCH ROUTE
     {
       path: '*',
-      element: (
-        <main style={{ padding: '1rem' }}>
-          <p>404 Page not found 😂😂😂</p>
-        </main>
-      ),
+      element: <div style={{ padding: 20 }}>404 Not Found</div>,
     },
   ]);
+
   return (
-    <div>
-      <React.Suspense fallback={<div>Loading...</div>}>
-        <RouterProvider router={router} />
-      </React.Suspense>
-    </div>
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <RouterProvider router={router} />
+    </React.Suspense>
   );
 }

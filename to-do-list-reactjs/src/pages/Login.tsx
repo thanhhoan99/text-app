@@ -101,7 +101,7 @@ export default function Login() {
           type="submit"
           disabled={isSubmitting || !isValid}
           className={`w-full py-2 rounded-md font-medium transition-colors ${
-            isSubmitting || !isValid ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600 text-white'
+            isSubmitting || !isValid ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-900 hover:bg-gray-600 text-white'
           }`}
         >
           {isSubmitting ? 'Logging in...' : 'Login'}

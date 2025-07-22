@@ -14,7 +14,7 @@ export default function AddTask() {
   };
 
   useEffect(() => {
-    if (!loggedInUser || !hasRole('Administrators')) {
+    if (!loggedInUser || !hasRole('Managers')) {
      navigate('/access-denied');
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
