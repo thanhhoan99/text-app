@@ -5,7 +5,7 @@ import * as yup from 'yup';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { useAuthStore } from '../useAuthStore';
+import { useAuthStore } from '../stores/useAuthStore';
 
 // Strong typed interface for form data
 interface IFormInput {

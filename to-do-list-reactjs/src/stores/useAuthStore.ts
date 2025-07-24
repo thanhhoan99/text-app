@@ -2,7 +2,7 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
-import { apiClient } from './libraries/api-client';
+import { apiClient } from '../libraries/api-client';
 
 export interface LoggedInUser {
   id: string | number;

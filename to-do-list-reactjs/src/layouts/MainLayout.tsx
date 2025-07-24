@@ -4,7 +4,7 @@ import './layout.css';
 import { Layout, Menu, Dropdown, Space, type MenuProps, Avatar } from 'antd';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { DownOutlined, LogoutOutlined } from '@ant-design/icons';
-import { useAuthStore } from '../useAuthStore';
+import { useAuthStore } from '../stores/useAuthStore';
 import routes from '../routes';
 import DynamicBreadcrumb from '../pages/DynamicBreadcrumb';
 

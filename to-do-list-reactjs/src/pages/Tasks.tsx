@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Table, Button, Space } from 'antd';
 import type { ColumnsType, TablePaginationConfig, TableProps } from 'antd/es/table';
 import type { SorterResult } from 'antd/es/table/interface';
-import { useAuthStore } from '../useAuthStore';
+import { useAuthStore } from '../stores/useAuthStore';
 import { useNavigate, Link } from 'react-router-dom';
 import { apiClient } from '../libraries/api-client';
 

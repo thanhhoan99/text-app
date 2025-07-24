@@ -1,7 +1,7 @@
 // src/pages/AddTask.tsx
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../useAuthStore';
+import { useAuthStore } from '../stores/useAuthStore';
 
 export default function AddTask() {
   const { loggedInUser } = useAuthStore((state) => state);

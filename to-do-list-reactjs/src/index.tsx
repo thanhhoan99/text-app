@@ -2,7 +2,7 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import routes from './routes';
-import { useAuthStore } from './useAuthStore';
+import { useAuthStore } from './stores/useAuthStore';
 import MainLayout from './layouts/MainLayout';
 
 export default function TasksManagementWithZustandAndSecurity() {
